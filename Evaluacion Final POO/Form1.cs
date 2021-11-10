@@ -13,6 +13,7 @@ namespace Evaluacion_Final_POO
 {
     public partial class Form1 : Form
     {
+        Datos_Empleados empleados = new Datos_Empleados;
         public Form1()
         {
             InitializeComponent();
@@ -255,6 +256,11 @@ namespace Evaluacion_Final_POO
             {
                 MessageBox.Show("Primero ingrese la fecha de nacimiento", "validación de Fecha", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void btn_SiguienteEmpleado_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

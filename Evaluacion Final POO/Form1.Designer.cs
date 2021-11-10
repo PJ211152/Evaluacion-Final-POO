@@ -293,6 +293,7 @@ namespace Evaluacion_Final_POO
             this.btn_SiguienteEmpleado.TabIndex = 3;
             this.btn_SiguienteEmpleado.Text = "Proximo empleado";
             this.btn_SiguienteEmpleado.UseVisualStyleBackColor = true;
+            this.btn_SiguienteEmpleado.Click += new System.EventHandler(this.btn_SiguienteEmpleado_Click);
             // 
             // btn_Abrir
             // 
