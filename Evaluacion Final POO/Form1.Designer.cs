@@ -55,10 +55,12 @@ namespace Evaluacion_Final_POO
             this.btn_SiguienteEmpleado = new System.Windows.Forms.Button();
             this.btn_Abrir = new System.Windows.Forms.Button();
             this.btn_Generar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaRenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaISSS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -226,6 +228,8 @@ namespace Evaluacion_Final_POO
             this.dtp_FechaContrato.Size = new System.Drawing.Size(200, 20);
             this.dtp_FechaContrato.TabIndex = 11;
             this.dtp_FechaContrato.CloseUp += new System.EventHandler(this.dtp_FechaContrato_CloseUp);
+            this.dtp_FechaContrato.ValueChanged += new System.EventHandler(this.dtp_FechaContrato_ValueChanged);
+            this.dtp_FechaContrato.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dtp_FechaContrato_MouseDown);
             // 
             // txb_Sueldo
             // 
@@ -273,16 +277,17 @@ namespace Evaluacion_Final_POO
             // 
             // btn_NuevoEmpleado
             // 
-            this.btn_NuevoEmpleado.Location = new System.Drawing.Point(28, 226);
+            this.btn_NuevoEmpleado.Location = new System.Drawing.Point(38, 226);
             this.btn_NuevoEmpleado.Name = "btn_NuevoEmpleado";
             this.btn_NuevoEmpleado.Size = new System.Drawing.Size(125, 50);
             this.btn_NuevoEmpleado.TabIndex = 2;
             this.btn_NuevoEmpleado.Text = "Nuevo empleado";
             this.btn_NuevoEmpleado.UseVisualStyleBackColor = true;
+            this.btn_NuevoEmpleado.Click += new System.EventHandler(this.btn_NuevoEmpleado_Click);
             // 
             // btn_SiguienteEmpleado
             // 
-            this.btn_SiguienteEmpleado.Location = new System.Drawing.Point(201, 226);
+            this.btn_SiguienteEmpleado.Location = new System.Drawing.Point(211, 226);
             this.btn_SiguienteEmpleado.Name = "btn_SiguienteEmpleado";
             this.btn_SiguienteEmpleado.Size = new System.Drawing.Size(125, 50);
             this.btn_SiguienteEmpleado.TabIndex = 3;
@@ -291,7 +296,7 @@ namespace Evaluacion_Final_POO
             // 
             // btn_Abrir
             // 
-            this.btn_Abrir.Location = new System.Drawing.Point(399, 224);
+            this.btn_Abrir.Location = new System.Drawing.Point(409, 224);
             this.btn_Abrir.Name = "btn_Abrir";
             this.btn_Abrir.Size = new System.Drawing.Size(125, 50);
             this.btn_Abrir.TabIndex = 4;
@@ -300,18 +305,27 @@ namespace Evaluacion_Final_POO
             // 
             // btn_Generar
             // 
-            this.btn_Generar.Location = new System.Drawing.Point(587, 226);
+            this.btn_Generar.Location = new System.Drawing.Point(597, 226);
             this.btn_Generar.Name = "btn_Generar";
             this.btn_Generar.Size = new System.Drawing.Size(125, 50);
             this.btn_Generar.TabIndex = 5;
             this.btn_Generar.Text = "Generar plantilla";
             this.btn_Generar.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(28, 306);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(715, 185);
+            this.dataGridView1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 503);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_Generar);
             this.Controls.Add(this.btn_Abrir);
             this.Controls.Add(this.btn_SiguienteEmpleado);
@@ -326,6 +340,7 @@ namespace Evaluacion_Final_POO
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaRenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaISSS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -358,6 +373,7 @@ namespace Evaluacion_Final_POO
         private System.Windows.Forms.Button btn_Generar;
         private System.Windows.Forms.TextBox txb_Correo;
         private System.Windows.Forms.Label lbl_Correo;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

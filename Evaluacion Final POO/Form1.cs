@@ -33,6 +33,10 @@ namespace Evaluacion_Final_POO
 
             nud_TasaISSS.Value = 3;
             nud_TasaRenta.Value = 10;
+
+            //El form aparece con los controles apagados
+            desactivar();
+            dtp_FechaContrato.Enabled = false;
         }
 
         private void txb_DUI_TextChanged(object sender, EventArgs e)
@@ -154,7 +158,8 @@ namespace Evaluacion_Final_POO
 
             if(dtp_FechaNacimiento.Value.Date < DateTime.Parse("31 Dec 2003")&& dtp_FechaNacimiento.Value.Date > DateTime.Parse("1 Jan 1972"))
             {
-                
+                dtp_FechaContrato.Enabled = true;
+                dtp_FechaContrato.Value = dtp_FechaNacimiento.Value.AddYears(18);
             }
             else
             {
@@ -168,14 +173,14 @@ namespace Evaluacion_Final_POO
 
             //Validacion para la fecha de Contrato
 
-            if (dtp_FechaContrato.Value.Date < DateTime.Parse("31 Dec 2003") && dtp_FechaContrato.Value.Date > DateTime.Parse("1 Jan 1972"))
+            if (dtp_FechaContrato.Value.Date < DateTime.Today && dtp_FechaContrato.Value.Date >= (dtp_FechaNacimiento.Value.AddYears(18))&&dtp_FechaContrato.Value.Date<= (dtp_FechaNacimiento.Value.AddYears(50)))
             {
 
             }
             else
             {
-                MessageBox.Show("Se admiten fechas desde 1972 hasta 2003", "validación de fecha", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                dtp_FechaContrato.Value = DateTime.Parse("31 Dec 2003");
+                MessageBox.Show("Ingrese una fecha valida (Se tiene que tener de 18 a 50 años)", "validación de fecha", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                dtp_FechaContrato.Value = dtp_FechaNacimiento.Value.AddYears(18);
             }
         }
 
@@ -210,6 +215,45 @@ namespace Evaluacion_Final_POO
             catch
             {
                 return false;
+            }
+        }
+
+        private void btn_NuevoEmpleado_Click(object sender, EventArgs e)
+        {
+            activar();
+        }
+
+        public void activar()
+        {
+            groupBox1.Enabled = true;
+            groupBox2.Enabled = true;
+            btn_SiguienteEmpleado.Enabled = true;
+            btn_Generar.Enabled = true;
+            btn_Abrir.Enabled = true;
+            dataGridView1.Enabled = true;
+            btn_NuevoEmpleado.Enabled = false;
+        }
+
+        public void desactivar()
+        {
+            groupBox1.Enabled = false;
+            groupBox2.Enabled = false;
+            btn_SiguienteEmpleado.Enabled = false;
+            btn_Generar.Enabled = false;
+            btn_Abrir.Enabled = false;
+            dataGridView1.Enabled = false;
+        }
+
+        private void dtp_FechaContrato_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtp_FechaContrato_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (dtp_FechaContrato.Enabled == false)
+            {
+                MessageBox.Show("Primero ingrese la fecha de nacimiento", "validación de Fecha", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
