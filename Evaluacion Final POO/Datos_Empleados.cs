@@ -8,11 +8,12 @@ namespace Evaluacion_Final_POO
 {
     class Datos_Empleados
     {
-        private string[] nombres;
-        private string[] apellidos;
-        private string[] dui;
-        private string[] telefono;
-        private string[] correo;
+        private string[] nombres = new string[9];
+        private string[] apellidos = new string[9];
+        private string[] dui = new string[9];
+        private string[] telefono = new string[9];
+        private string[] correo = new string[9];
+        private int[] sueldo = new int[9];
 
         public string[] Nombres
         {
@@ -41,7 +42,11 @@ namespace Evaluacion_Final_POO
             get { return correo; }
             set { correo = value; }
         }
-
+        public int[] Sueldo
+        {
+            get { return sueldo; }
+            set { sueldo = value; }
+        }
 
     }
 }

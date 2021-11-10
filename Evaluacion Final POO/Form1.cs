@@ -13,7 +13,7 @@ namespace Evaluacion_Final_POO
 {
     public partial class Form1 : Form
     {
-        Datos_Empleados empleados = new Datos_Empleados;
+        Datos_Empleados empleados = new Datos_Empleados();
         public Form1()
         {
             InitializeComponent();
@@ -222,6 +222,8 @@ namespace Evaluacion_Final_POO
         private void btn_NuevoEmpleado_Click(object sender, EventArgs e)
         {
             activar();
+            lbl_Confirmacion.Text = "";
+
         }
 
         public void activar()
@@ -260,7 +262,54 @@ namespace Evaluacion_Final_POO
 
         private void btn_SiguienteEmpleado_Click(object sender, EventArgs e)
         {
+            if (txb_Nombres.TextLength != 0 && txb_Apellidos.TextLength != 0 && txb_Correo.TextLength != 0 && txb_DUI.TextLength == 9 && txb_Sueldo.TextLength != 0 && txb_Telefono.TextLength == 8)
+            {
+                int Numempleado = 0;
+                
+                if (Numempleado < 9)
+                {
+                    empleados.Nombres[Numempleado] = txb_Nombres.Text;
+                    empleados.Apellidos[Numempleado] = txb_Apellidos.Text;
+                    empleados.DUI[Numempleado] = txb_DUI.Text;
+                    empleados.Telefono[Numempleado] = txb_Telefono.Text;
+                    empleados.Correo[Numempleado] = txb_Correo.Text;
+                    empleados.Sueldo[Numempleado] = Convert.ToInt32(txb_Sueldo.Text);
+                    vaciarcampos();
+                    Numempleado = Numempleado + 1;
+                }
+                else
+                {
+                    empleados.Nombres[Numempleado] = txb_Nombres.Text;
+                    empleados.Apellidos[Numempleado] = txb_Apellidos.Text;
+                    empleados.DUI[Numempleado] = txb_DUI.Text;
+                    empleados.Telefono[Numempleado] = txb_Telefono.Text;
+                    empleados.Correo[Numempleado] = txb_Correo.Text;
+                    empleados.Sueldo[Numempleado] = Convert.ToInt32(txb_Sueldo.Text);
+                    vaciarcampos();
+                    lbl_Confirmacion.Text = "Ya se han llenado los 10 espacios para los empleados";
+                    Numempleado = 0;
+                    btn_Abrir.Enabled = true;
+                    btn_Generar.Enabled = true;
+                    btn_SiguienteEmpleado.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
 
+        public void vaciarcampos()
+        {
+            txb_Nombres.Clear();
+            txb_Apellidos.Clear();
+            txb_DUI.Clear();
+            txb_Telefono.Clear();
+            txb_Correo.Clear();
+            txb_Sueldo.Clear();
+            dtp_FechaNacimiento.Value = DateTime.Parse("31 Dec 2003");
+            dtp_FechaContrato.Value = DateTime.Parse("31 Dec 2003");
+            dtp_FechaContrato.Enabled = false;
         }
     }
 }

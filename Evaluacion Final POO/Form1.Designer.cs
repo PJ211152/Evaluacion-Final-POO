@@ -56,6 +56,7 @@ namespace Evaluacion_Final_POO
             this.btn_Abrir = new System.Windows.Forms.Button();
             this.btn_Generar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lbl_Confirmacion = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaRenta)).BeginInit();
@@ -321,11 +322,21 @@ namespace Evaluacion_Final_POO
             this.dataGridView1.Size = new System.Drawing.Size(715, 185);
             this.dataGridView1.TabIndex = 6;
             // 
+            // lbl_Confirmacion
+            // 
+            this.lbl_Confirmacion.AutoSize = true;
+            this.lbl_Confirmacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Confirmacion.Location = new System.Drawing.Point(356, 287);
+            this.lbl_Confirmacion.Name = "lbl_Confirmacion";
+            this.lbl_Confirmacion.Size = new System.Drawing.Size(0, 16);
+            this.lbl_Confirmacion.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 503);
+            this.Controls.Add(this.lbl_Confirmacion);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_Generar);
             this.Controls.Add(this.btn_Abrir);
@@ -343,6 +354,7 @@ namespace Evaluacion_Final_POO
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaISSS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -375,6 +387,7 @@ namespace Evaluacion_Final_POO
         private System.Windows.Forms.TextBox txb_Correo;
         private System.Windows.Forms.Label lbl_Correo;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label lbl_Confirmacion;
     }
 }
 
