@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Evaluacion_Final_POO
 {
@@ -20,8 +21,18 @@ namespace Evaluacion_Final_POO
 
             txb_DUI.MaxLength = 9;
             txb_Telefono.MaxLength = 8;
+            txb_Sueldo.MaxLength = 9;
             txb_Nombres.MaxLength = 50;
             txb_Apellidos.MaxLength = 50;
+
+            //Fexha por defecto de el sistema
+            dtp_FechaNacimiento.Value = DateTime.Parse("31 Dec 2003");
+            dtp_FechaContrato.Value = DateTime.Parse("31 Dec 2003");
+
+            //DEcimal places configuracion
+
+            nud_TasaISSS.Value = 3;
+            nud_TasaRenta.Value = 10;
         }
 
         private void txb_DUI_TextChanged(object sender, EventArgs e)
@@ -34,6 +45,10 @@ namespace Evaluacion_Final_POO
             //Validando el que solo se ingresen numeros
 
             if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -64,6 +79,137 @@ namespace Evaluacion_Final_POO
             {
                 e.Handled = true;
                 MessageBox.Show("Solo se admiten letras", "validación de letras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void txb_Nombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Validando el que solo se ingresen letras al nombre
+
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten letras", "validación de letras", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void txb_Telefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Validando el ingreso de números al teléfono
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void txb_Sueldo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            //Vailidando el ingreso de números al sueldo
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if ((e.KeyChar == '.') && (!txb_Sueldo.Text.Contains(".")))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se admiten datos numéricos", "validación de números", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void dtp_FechaNacimiento_CloseUp(object sender, EventArgs e)
+        {
+            //Validacion para la fecha de nacimiento
+
+            if(dtp_FechaNacimiento.Value.Date < DateTime.Parse("31 Dec 2003")&& dtp_FechaNacimiento.Value.Date > DateTime.Parse("1 Jan 1972"))
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Se admiten fechas desde 1972 hasta 2003", "validación de fecha", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                dtp_FechaNacimiento.Value = DateTime.Parse("31 Dec 2003");
+            }
+        }
+
+        private void dtp_FechaContrato_CloseUp(object sender, EventArgs e)
+        {
+
+            //Validacion para la fecha de Contrato
+
+            if (dtp_FechaContrato.Value.Date < DateTime.Parse("31 Dec 2003") && dtp_FechaContrato.Value.Date > DateTime.Parse("1 Jan 1972"))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Se admiten fechas desde 1972 hasta 2003", "validación de fecha", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                dtp_FechaContrato.Value = DateTime.Parse("31 Dec 2003");
+            }
+        }
+
+        private void txb_Correo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txb_Correo_Leave(object sender, EventArgs e)
+        {
+
+            if (validarEmail(txb_Correo.Text))
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un correo valido", "validación de Email", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txb_Correo.Text = "";
+            }
+        }
+
+        public static bool validarEmail(string email)
+        {
+
+            //Funcion que indica si el email esta bien escrito
+            try
+            {
+                var mail = new System.Net.Mail.MailAddress(email);
+                return mail.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
