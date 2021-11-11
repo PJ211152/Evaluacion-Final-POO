@@ -8,12 +8,16 @@ namespace Evaluacion_Final_POO
 {
     class Datos_Empleados
     {
-        private string[] nombres = new string[9];
-        private string[] apellidos = new string[9];
-        private string[] dui = new string[9];
-        private string[] telefono = new string[9];
-        private string[] correo = new string[9];
-        private int[] sueldo = new int[9];
+        private string[] nombres = new string[10];
+        private string[] apellidos = new string[10];
+        private string[] dui = new string[10];
+        private string[] telefono = new string[10];
+        private string[] correo = new string[10];
+        private double[] sueldo = new double[10];
+        private double[] isss = new double[10];
+        private double[] renta = new double[10];
+        private DateTime[] fechaNacimiento = new DateTime[10];
+        private DateTime[] fechaContrato = new DateTime[10];
 
         public string[] Nombres
         {
@@ -42,11 +46,33 @@ namespace Evaluacion_Final_POO
             get { return correo; }
             set { correo = value; }
         }
-        public int[] Sueldo
+        public double[] Sueldo
         {
             get { return sueldo; }
             set { sueldo = value; }
         }
+        public DateTime[] FechaNacimiento
+        {
+            get { return fechaNacimiento; }
+            set { fechaNacimiento = value; }
+        }
+        public DateTime[] FechaContrato
+        {
+            get { return fechaContrato; }
+            set { fechaContrato = value; }
+        }
+        public double[] ISSS
+        {
+            get { return isss; }
+            set { isss = value; }
+        }
+        public double[] Renta
+        {
+            get { return renta; }
+            set { renta = value; }
+        }
+
+
 
     }
 }

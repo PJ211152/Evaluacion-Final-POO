@@ -55,13 +55,20 @@ namespace Evaluacion_Final_POO
             this.btn_SiguienteEmpleado = new System.Windows.Forms.Button();
             this.btn_Abrir = new System.Windows.Forms.Button();
             this.btn_Generar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgw_Empleados = new System.Windows.Forms.DataGridView();
             this.lbl_Confirmacion = new System.Windows.Forms.Label();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dui = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.suledo_base = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sueldo_neto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaRenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaISSS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw_Empleados)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -208,7 +215,18 @@ namespace Evaluacion_Final_POO
             // 
             // nud_TasaRenta
             // 
+            this.nud_TasaRenta.DecimalPlaces = 1;
+            this.nud_TasaRenta.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.nud_TasaRenta.Location = new System.Drawing.Point(250, 101);
+            this.nud_TasaRenta.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.nud_TasaRenta.Name = "nud_TasaRenta";
             this.nud_TasaRenta.ReadOnly = true;
             this.nud_TasaRenta.Size = new System.Drawing.Size(77, 20);
@@ -216,7 +234,18 @@ namespace Evaluacion_Final_POO
             // 
             // nud_TasaISSS
             // 
+            this.nud_TasaISSS.DecimalPlaces = 1;
+            this.nud_TasaISSS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.nud_TasaISSS.Location = new System.Drawing.Point(88, 102);
+            this.nud_TasaISSS.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.nud_TasaISSS.Name = "nud_TasaISSS";
             this.nud_TasaISSS.ReadOnly = true;
             this.nud_TasaISSS.Size = new System.Drawing.Size(77, 20);
@@ -304,6 +333,7 @@ namespace Evaluacion_Final_POO
             this.btn_Abrir.TabIndex = 4;
             this.btn_Abrir.Text = "Abrir plantilla";
             this.btn_Abrir.UseVisualStyleBackColor = true;
+            this.btn_Abrir.Click += new System.EventHandler(this.btn_Abrir_Click);
             // 
             // btn_Generar
             // 
@@ -313,14 +343,23 @@ namespace Evaluacion_Final_POO
             this.btn_Generar.TabIndex = 5;
             this.btn_Generar.Text = "Generar plantilla";
             this.btn_Generar.UseVisualStyleBackColor = true;
+            this.btn_Generar.Click += new System.EventHandler(this.btn_Generar_Click);
             // 
-            // dataGridView1
+            // dgw_Empleados
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 306);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(715, 185);
-            this.dataGridView1.TabIndex = 6;
+            this.dgw_Empleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgw_Empleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nombre,
+            this.apellido,
+            this.dui,
+            this.Telefono,
+            this.correo,
+            this.suledo_base,
+            this.sueldo_neto});
+            this.dgw_Empleados.Location = new System.Drawing.Point(28, 306);
+            this.dgw_Empleados.Name = "dgw_Empleados";
+            this.dgw_Empleados.Size = new System.Drawing.Size(715, 185);
+            this.dgw_Empleados.TabIndex = 6;
             // 
             // lbl_Confirmacion
             // 
@@ -331,13 +370,48 @@ namespace Evaluacion_Final_POO
             this.lbl_Confirmacion.Size = new System.Drawing.Size(0, 16);
             this.lbl_Confirmacion.TabIndex = 7;
             // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            // 
+            // apellido
+            // 
+            this.apellido.HeaderText = "Apellidos";
+            this.apellido.Name = "apellido";
+            // 
+            // dui
+            // 
+            this.dui.HeaderText = "DUI";
+            this.dui.Name = "dui";
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Teléfono";
+            this.Telefono.Name = "Telefono";
+            // 
+            // correo
+            // 
+            this.correo.HeaderText = "Correo";
+            this.correo.Name = "correo";
+            // 
+            // suledo_base
+            // 
+            this.suledo_base.HeaderText = "Sueldo base";
+            this.suledo_base.Name = "suledo_base";
+            // 
+            // sueldo_neto
+            // 
+            this.sueldo_neto.HeaderText = "Sueldo neto";
+            this.sueldo_neto.Name = "sueldo_neto";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 503);
             this.Controls.Add(this.lbl_Confirmacion);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgw_Empleados);
             this.Controls.Add(this.btn_Generar);
             this.Controls.Add(this.btn_Abrir);
             this.Controls.Add(this.btn_SiguienteEmpleado);
@@ -352,7 +426,7 @@ namespace Evaluacion_Final_POO
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaRenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_TasaISSS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw_Empleados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,8 +460,15 @@ namespace Evaluacion_Final_POO
         private System.Windows.Forms.Button btn_Generar;
         private System.Windows.Forms.TextBox txb_Correo;
         private System.Windows.Forms.Label lbl_Correo;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgw_Empleados;
         private System.Windows.Forms.Label lbl_Confirmacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dui;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn correo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn suledo_base;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sueldo_neto;
     }
 }
 

@@ -13,6 +13,9 @@ namespace Evaluacion_Final_POO
 {
     public partial class Form1 : Form
     {
+        int num = 0;
+        bool valfecha = false;
+
         Datos_Empleados empleados = new Datos_Empleados();
         public Form1()
         {
@@ -161,6 +164,7 @@ namespace Evaluacion_Final_POO
             {
                 dtp_FechaContrato.Enabled = true;
                 dtp_FechaContrato.Value = dtp_FechaNacimiento.Value.AddYears(18);
+                valfecha = true;
             }
             else
             {
@@ -223,6 +227,9 @@ namespace Evaluacion_Final_POO
         {
             activar();
             lbl_Confirmacion.Text = "";
+            btn_Generar.Enabled = false;
+            btn_Abrir.Enabled = false;
+            dgw_Empleados.Enabled = false;
 
         }
 
@@ -231,9 +238,8 @@ namespace Evaluacion_Final_POO
             groupBox1.Enabled = true;
             groupBox2.Enabled = true;
             btn_SiguienteEmpleado.Enabled = true;
-            btn_Generar.Enabled = true;
-            btn_Abrir.Enabled = true;
-            dataGridView1.Enabled = true;
+            btn_Generar.Enabled = false;
+            btn_Abrir.Enabled = false;
             btn_NuevoEmpleado.Enabled = false;
         }
 
@@ -244,7 +250,7 @@ namespace Evaluacion_Final_POO
             btn_SiguienteEmpleado.Enabled = false;
             btn_Generar.Enabled = false;
             btn_Abrir.Enabled = false;
-            dataGridView1.Enabled = false;
+            dgw_Empleados.Enabled = false;
         }
 
         private void dtp_FechaContrato_ValueChanged(object sender, EventArgs e)
@@ -262,40 +268,65 @@ namespace Evaluacion_Final_POO
 
         private void btn_SiguienteEmpleado_Click(object sender, EventArgs e)
         {
-            if (txb_Nombres.TextLength != 0 && txb_Apellidos.TextLength != 0 && txb_Correo.TextLength != 0 && txb_DUI.TextLength == 9 && txb_Sueldo.TextLength != 0 && txb_Telefono.TextLength == 8)
+            if (num <= 9)
             {
-                int Numempleado = 0;
-                
-                if (Numempleado < 9)
+                if (txb_Nombres.TextLength != 0)
                 {
-                    empleados.Nombres[Numempleado] = txb_Nombres.Text;
-                    empleados.Apellidos[Numempleado] = txb_Apellidos.Text;
-                    empleados.DUI[Numempleado] = txb_DUI.Text;
-                    empleados.Telefono[Numempleado] = txb_Telefono.Text;
-                    empleados.Correo[Numempleado] = txb_Correo.Text;
-                    empleados.Sueldo[Numempleado] = Convert.ToInt32(txb_Sueldo.Text);
-                    vaciarcampos();
-                    Numempleado = Numempleado + 1;
+                    if (txb_Telefono.TextLength != 0)
+                    {
+                        if (txb_Apellidos.TextLength != 0)
+                        {
+                            if (txb_Sueldo.TextLength != 0)
+                            {
+                                if (valfecha == true)
+                                {
+                                    valfecha = false;
+                                    empleados.Nombres[num] = txb_Nombres.Text;
+                                    empleados.Apellidos[num] = txb_Apellidos.Text;
+                                    empleados.DUI[num] = txb_DUI.Text;
+                                    empleados.Telefono[num] = txb_Telefono.Text;
+                                    empleados.Correo[num] = txb_Correo.Text;
+                                    empleados.Sueldo[num] = Convert.ToInt32(txb_Sueldo.Text);
+                                    empleados.FechaContrato[num] = dtp_FechaContrato.Value;
+                                    empleados.FechaNacimiento[num] = dtp_FechaNacimiento.Value;
+                                    empleados.ISSS[num] = Convert.ToDouble(nud_TasaISSS.Value / 100);
+                                    empleados.Renta[num] = Convert.ToDouble(nud_TasaRenta.Value / 100);
+                                    vaciarcampos();
+                                    num = num + 1;
+                                    lbl_Confirmacion.Text = Convert.ToString(num);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            else 
+                            {
+                                MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        
+                        }
+                        else
+                        {
+                            MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 else
                 {
-                    empleados.Nombres[Numempleado] = txb_Nombres.Text;
-                    empleados.Apellidos[Numempleado] = txb_Apellidos.Text;
-                    empleados.DUI[Numempleado] = txb_DUI.Text;
-                    empleados.Telefono[Numempleado] = txb_Telefono.Text;
-                    empleados.Correo[Numempleado] = txb_Correo.Text;
-                    empleados.Sueldo[Numempleado] = Convert.ToInt32(txb_Sueldo.Text);
-                    vaciarcampos();
-                    lbl_Confirmacion.Text = "Ya se han llenado los 10 espacios para los empleados";
-                    Numempleado = 0;
-                    btn_Abrir.Enabled = true;
-                    btn_Generar.Enabled = true;
-                    btn_SiguienteEmpleado.Enabled = false;
+                    MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Verifique que los datos esten ingresados correctamente", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                btn_SiguienteEmpleado.Enabled = false;
+                btn_Abrir.Enabled = true;
+                btn_Generar.Enabled = true;
+                lbl_Confirmacion.Text = "Ya se han llenado los espacios para empleados";
             }
         }
 
@@ -310,6 +341,35 @@ namespace Evaluacion_Final_POO
             dtp_FechaNacimiento.Value = DateTime.Parse("31 Dec 2003");
             dtp_FechaContrato.Value = DateTime.Parse("31 Dec 2003");
             dtp_FechaContrato.Enabled = false;
+        }
+
+        private void btn_Generar_Click(object sender, EventArgs e)
+        {
+            int i= 0;
+            for (i = 0; i < 9; i++)
+            {
+                int n = dgw_Empleados.Rows.Add();
+                dgw_Empleados.Rows[i].Cells[0].Value = empleados.Nombres[i];
+                dgw_Empleados.Rows[i].Cells[1].Value = empleados.Apellidos[i];
+                dgw_Empleados.Rows[i].Cells[2].Value = empleados.DUI[i];
+                dgw_Empleados.Rows[i].Cells[3].Value = empleados.Telefono[i];
+                dgw_Empleados.Rows[i].Cells[4].Value = empleados.Correo[i];
+                dgw_Empleados.Rows[i].Cells[5].Value = empleados.Sueldo[i];
+                dgw_Empleados.Rows[i].Cells[5].Value = (empleados.Sueldo[i]-empleados.Sueldo[i]*empleados.ISSS[i]- empleados.Sueldo[i] * empleados.Renta[i]);
+            }
+            btn_NuevoEmpleado.Enabled = true;
+        }
+
+        private void btn_Abrir_Click(object sender, EventArgs e)
+        {
+            dgw_Empleados.Enabled = true;
+            dgw_Empleados.ReadOnly = true;
+            btn_Generar.Enabled = true;
+        }
+
+        public void agregar(int x)
+        {
+
         }
     }
 }
