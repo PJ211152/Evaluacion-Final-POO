@@ -1,7 +1,7 @@
 ﻿
 namespace Evaluacion_Final_POO
 {
-    partial class Form1
+    partial class frm_Empleado
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -405,7 +405,7 @@ namespace Evaluacion_Final_POO
             this.sueldo_neto.HeaderText = "Sueldo neto";
             this.sueldo_neto.Name = "sueldo_neto";
             // 
-            // Form1
+            // frm_Empleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -418,8 +418,8 @@ namespace Evaluacion_Final_POO
             this.Controls.Add(this.btn_NuevoEmpleado);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frm_Empleado";
+            this.Text = "Datos de Empleado";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

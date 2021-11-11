@@ -11,13 +11,13 @@ using System.Text.RegularExpressions;
 
 namespace Evaluacion_Final_POO
 {
-    public partial class Form1 : Form
+    public partial class frm_Empleado : Form
     {
         int num = 0;
         bool valfecha = false;
 
         Datos_Empleados empleados = new Datos_Empleados();
-        public Form1()
+        public frm_Empleado()
         {
             InitializeComponent();
 
@@ -268,7 +268,7 @@ namespace Evaluacion_Final_POO
 
         private void btn_SiguienteEmpleado_Click(object sender, EventArgs e)
         {
-            if (num <= 9)
+            if (num < 9)
             {
                 if (txb_Nombres.TextLength != 0)
                 {
@@ -323,6 +323,18 @@ namespace Evaluacion_Final_POO
             }
             else
             {
+                valfecha = false;
+                empleados.Nombres[num] = txb_Nombres.Text;
+                empleados.Apellidos[num] = txb_Apellidos.Text;
+                empleados.DUI[num] = txb_DUI.Text;
+                empleados.Telefono[num] = txb_Telefono.Text;
+                empleados.Correo[num] = txb_Correo.Text;
+                empleados.Sueldo[num] = Convert.ToInt32(txb_Sueldo.Text);
+                empleados.FechaContrato[num] = dtp_FechaContrato.Value;
+                empleados.FechaNacimiento[num] = dtp_FechaNacimiento.Value;
+                empleados.ISSS[num] = Convert.ToDouble(nud_TasaISSS.Value / 100);
+                empleados.Renta[num] = Convert.ToDouble(nud_TasaRenta.Value / 100);
+                vaciarcampos();
                 btn_SiguienteEmpleado.Enabled = false;
                 btn_Abrir.Enabled = true;
                 btn_Generar.Enabled = true;
@@ -346,7 +358,8 @@ namespace Evaluacion_Final_POO
         private void btn_Generar_Click(object sender, EventArgs e)
         {
             int i= 0;
-            for (i = 0; i < 9; i++)
+            //Ciclo para rellenar el DataGridWiew
+            for (i = 0; i <= 9; i++)
             {
                 int n = dgw_Empleados.Rows.Add();
                 dgw_Empleados.Rows[i].Cells[0].Value = empleados.Nombres[i];
@@ -355,7 +368,7 @@ namespace Evaluacion_Final_POO
                 dgw_Empleados.Rows[i].Cells[3].Value = empleados.Telefono[i];
                 dgw_Empleados.Rows[i].Cells[4].Value = empleados.Correo[i];
                 dgw_Empleados.Rows[i].Cells[5].Value = empleados.Sueldo[i];
-                dgw_Empleados.Rows[i].Cells[5].Value = (empleados.Sueldo[i]-empleados.Sueldo[i]*empleados.ISSS[i]- empleados.Sueldo[i] * empleados.Renta[i]);
+                dgw_Empleados.Rows[i].Cells[6].Value = (empleados.Sueldo[i]-empleados.Sueldo[i]*empleados.ISSS[i]- empleados.Sueldo[i] * empleados.Renta[i]);
             }
             btn_NuevoEmpleado.Enabled = true;
         }
